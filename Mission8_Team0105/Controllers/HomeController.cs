@@ -52,7 +52,7 @@ namespace Mission8_Team0105.Controllers
         {
 
             // need to change the variable we are calling on here
-            var collections = _context.Tasks.Include("Category").ToList();
+            var collections = _context.Tasks.ToList();
                 //.OrderBy(x => x.CategoryName).ToList();
 
             // need to change the return view here

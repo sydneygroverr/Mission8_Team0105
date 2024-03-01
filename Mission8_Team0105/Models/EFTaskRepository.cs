@@ -9,6 +9,12 @@
             _context = temp;
         }
 
-        public List<Task> Tasks => _context.Tasks.ToList(); 
+        public List<Task> Tasks => _context.Tasks.ToList();
+
+        public void AddEdit(Task response)
+        {
+            _context.Add(response);
+            _context.SaveChanges();
+        }
     }
 }
