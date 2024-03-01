@@ -6,6 +6,10 @@
         object Categories { get; }
 
         public void AddEdit(Task response);
+        public void Quadrants();
+        public void Edit(int id);
+        public void Delete(int id);
+
         void SaveChanges();
         void Update(Task updatedInfo);
     }
