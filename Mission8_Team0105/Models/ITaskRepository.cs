@@ -4,12 +4,8 @@
     {
         List<Task> Tasks { get; }
         public void AddEdit(Task response);
-          
+         
     }
-
-
-
-
 }
 
 //namespace ScaffoldingFun.Models
