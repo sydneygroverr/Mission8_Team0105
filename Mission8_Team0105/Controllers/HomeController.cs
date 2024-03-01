@@ -34,7 +34,7 @@ namespace Mission8_Team0105.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovie(Models.Task response)
+        public IActionResult AddEdit(Models.Task response)
         {
 
             // add the record to the database
