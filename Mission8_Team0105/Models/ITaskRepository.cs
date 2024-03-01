@@ -7,3 +7,15 @@
           
     }
 }
+
+//namespace ScaffoldingFun.Models
+//{
+//    public interface IBaseballRepository //public INTERFACE, which had to be changed from Class. Do not forget this.
+//    {
+//        List<Manager> Managers { get; }
+
+//        public void AddManager(Manager manager);
+//    }
+
+
+//}
