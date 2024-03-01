@@ -10,11 +10,11 @@ namespace Mission8_Team0105.Controllers
     public class HomeController : Controller
     {
 
-        private task_context _context;
+        private ITaskRepository _repo;
 
-        public HomeController(task_context temp) //constructor
+        public HomeController(ITaskRepository temp) //constructor
         {
-            _context = temp;
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -26,7 +26,7 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult AddEdit()
         {
-            ViewBag.Categories = _context.Categories
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
@@ -38,8 +38,8 @@ namespace Mission8_Team0105.Controllers
         {
 
             // add the record to the database
-            _context.Tasks.Add(response);
-            _context.SaveChanges(); //commit changes to the database
+            _repo.Tasks.Add(response);
+            _repo.SaveChanges(); //commit changes to the database
 
 
             // need to change the return view
@@ -52,7 +52,7 @@ namespace Mission8_Team0105.Controllers
         {
 
             // need to change the variable we are calling on here
-            var collections = _context.Tasks.ToList();
+            var collections = _repo.Tasks.Include("Category").ToList();
                 //.OrderBy(x => x.CategoryName).ToList();
 
             // need to change the return view here
@@ -62,10 +62,10 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var recordToEdit = _context.Tasks
+            var recordToEdit = _repo.Tasks
                 .Single(x => x.TaskId == id);
 
-            ViewBag.Categories = _context.Categories
+            ViewBag.Categories = _repo.Categories
             .OrderBy(x => x.CategoryName)
             .ToList();
 
@@ -75,8 +75,8 @@ namespace Mission8_Team0105.Controllers
         [HttpPost]
         public IActionResult Edit(Models.Task updatedInfo)
         {
-            _context.Update(updatedInfo);
-            _context.SaveChanges();
+            _repo.Update(updatedInfo);
+            _repo.SaveChanges();
 
             return RedirectToAction("Quadrants");
         }
@@ -84,7 +84,7 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _context.Tasks
+            var recordToDelete = _repo.Tasks
                 .Single(x => x.TaskId == id);
 
 
@@ -95,8 +95,8 @@ namespace Mission8_Team0105.Controllers
         [HttpPost]
         public IActionResult Delete(Models.Task task)
         {
-            _context.Tasks.Remove(task);
-            _context.SaveChanges();
+            _repo.Tasks.Remove(task);
+            _repo.SaveChanges();
 
             return RedirectToAction("ConfirmDelete");
         }
