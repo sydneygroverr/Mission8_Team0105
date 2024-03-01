@@ -43,7 +43,7 @@ namespace Mission8_Team0105.Controllers
 
 
             // need to change the return view
-            return View("Confirmation", response);
+            return View("TaskAddConfirm", response);
         }
 
 
