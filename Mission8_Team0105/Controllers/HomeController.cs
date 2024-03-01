@@ -23,25 +23,16 @@ namespace Mission8_Team0105.Controllers
         }
 
 
-        // potentially can take out depending on views created
-        public IActionResult AddEdit()
-        {
-            return View("AddEdit");
-        }
-
-
-        // this will be the add task controller once we have a add task view 
         [HttpGet]
-        public IActionResult AddMovie()
+        public IActionResult AddEdit()
         {
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View("AddMovie");
+            return View("AddEdit");
         }
 
-        // again this will go with the add task view 
         [HttpPost]
         public IActionResult AddMovie(Models.Task response)
         {
@@ -57,7 +48,7 @@ namespace Mission8_Team0105.Controllers
 
 
         // view to look at all the tasks
-        public IActionResult MovieData()
+        public IActionResult Quadrants()
         {
 
             // need to change the variable we are calling on here
@@ -78,8 +69,7 @@ namespace Mission8_Team0105.Controllers
             .OrderBy(x => x.CategoryName)
             .ToList();
 
-            // need to change the return view 
-            return View("AddMovie", recordToEdit);
+            return View("AddEdit", recordToEdit);
         }
 
         [HttpPost]
@@ -88,8 +78,7 @@ namespace Mission8_Team0105.Controllers
             _context.Update(updatedInfo);
             _context.SaveChanges();
 
-            // need to change trhe return view
-            return RedirectToAction("MovieData");
+            return RedirectToAction("Quadrants");
         }
 
         [HttpGet]
@@ -109,9 +98,7 @@ namespace Mission8_Team0105.Controllers
             _context.Tasks.Remove(task);
             _context.SaveChanges();
 
-
-            // need to change return view
-            return RedirectToAction("MovieData");
+            return RedirectToAction("ConfirmDelete");
         }
     }
 }
