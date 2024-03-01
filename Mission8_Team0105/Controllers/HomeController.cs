@@ -4,47 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-//namespace Mission8_Team0105.Controllers
-//{
-
-//    // many of these are copy pasted from mission 7 and havent had all of the variables changed yet since I am not sure what needs to be changed and what can be deleted
-//    // once I have more info about the code you guys are writing I can better fit these to what actually needs to be executed
-
-//    public class HomeController : Controller
-//    {
-
-//        private ToDoListContext _context;
-
-//        public HomeController(ToDoListContext temp) //constructor
-//        {
-//            _context = temp;
-//        }
-
-//        public IActionResult Index()
-//        {
-//            return View();
-//        }
-
-//        public IActionResult QuadrantsView()
-//        {
-//            return View("QuadrantsView");
-//        }
-
-//        public IActionResult TasksView()
-//        {
-//            return TasksView();
-//        }
-
-//        public IActionResult Privacy()
-//        {
-//            return View();
-//        }
-
-//        [HttpGet]
-//        public IActionResult AddTask()
-//        {
-//            ViewBag.Tasks = _context.Tasks
-//              
 
 namespace Mission8_Team0105.Controllers
 {
@@ -60,7 +19,7 @@ namespace Mission8_Team0105.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
 
