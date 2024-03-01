@@ -24,9 +24,9 @@ namespace Mission8_Team0105.Controllers
 
 
         // potentially can take out depending on views created
-        public IActionResult Privacy()
+        public IActionResult AddEdit()
         {
-            return View("Privacy");
+            return View("AddEdit");
         }
 
 
