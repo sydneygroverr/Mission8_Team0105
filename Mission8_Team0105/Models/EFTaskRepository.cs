@@ -13,9 +13,15 @@
 
         public void AddEdit(Task response)
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             _context.Add(response);
             _context.SaveChanges();
         }
+
+        public void 
     }
 }
 

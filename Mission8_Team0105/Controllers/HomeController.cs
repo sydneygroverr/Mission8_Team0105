@@ -26,10 +26,7 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult AddEdit()
         {
-            ViewBag.Categories = _repo.Categories
-                .OrderBy(x => x.CategoryName)
-                .ToList();
-
+            
             return View("AddEdit");
         }
 
@@ -38,8 +35,8 @@ namespace Mission8_Team0105.Controllers
         {
 
             // add the record to the database
-            _repo.Tasks.Add(response);
-            _repo.SaveChanges(); //commit changes to the database
+            _repo.AddEdit(response);
+             //commit changes to the database
 
 
             // need to change the return view
