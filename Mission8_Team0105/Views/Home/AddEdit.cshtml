@@ -1,0 +1,51 @@
+﻿@model Task
+
+
+<div>
+    <h1>AddeEdit</h1>
+    <form>
+
+        <div> 
+            <label asp-for="TaskName">Task:</label>
+            <input asp-for="TaskName" />
+        </div>
+
+        <div>
+            <label asp-for="DueDate">Due Date:</label>
+            <input asp-for="DueDate" />
+        </div>
+
+        <div>
+            <label asp-for="Quadrant">Quadrant:</label>
+            <select asp-for="Quadrant">
+                <option value="">Choose...</option>
+                <option>Urgent + Important</option>
+                <option>Not Urgent + Important</option>
+                <option>Urgent + Not Important</option>
+                <option>Not Urgent + Not Important</option>
+            </select>
+        </div>
+
+        <div>
+            <label asp-for="Category">Category:</label>
+            <select asp-for="CategoryId">
+                <option value="">Select a Catetory</option>
+                @foreach (Category m in ViewBag.Categories)
+                {
+                    <option value="@m.CategoryId">@m.CategoryName</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <label asp-for="Completed">Completed?</label>
+            <select asp-for="Completed">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+        </div>
+
+        <button type="Add" class="btn-primary">Add</button>
+        <button type="Add" class="btn-primary">Eddit</button>
+    </form>
+</div>
