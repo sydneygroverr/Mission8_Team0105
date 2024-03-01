@@ -3,8 +3,11 @@
     public interface ITaskRepository
     {
         List<Task> Tasks { get; }
+        object Categories { get; }
+
         public void AddEdit(Task response);
-         
+        void SaveChanges();
+        void Update(Task updatedInfo);
     }
 }
 
