@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission8_Team0105.Models;
 
@@ -10,9 +11,11 @@ using Mission8_Team0105.Models;
 namespace Mission8_Team0105.Migrations
 {
     [DbContext(typeof(task_context))]
-    partial class task_contextModelSnapshot : ModelSnapshot
+    [Migration("20240302045233_ReposFromContext")]
+    partial class ReposFromContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");

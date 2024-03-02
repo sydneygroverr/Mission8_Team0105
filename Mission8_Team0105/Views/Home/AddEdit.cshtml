@@ -1,9 +1,14 @@
-﻿@model Task
+﻿@model Mission8_Team0105.Models.Task
 
 
 <div>
-    <h1>AddeEdit</h1>
+    <h1>Add/Edit</h1>
     <form>
+
+        <div> 
+            <label asp-for="TaskId">Task ID:</label>
+            <input asp-for="TaskId" />
+        </div>
 
         <div> 
             <label asp-for="TaskName">Task:</label>
@@ -16,7 +21,7 @@
         </div>
 
         <div>
-            <label asp-for="Quadrant">Quadrant:</label>
+            <label asp-for="Quadrant">Quadrant:</label>  
             <select asp-for="Quadrant">
                 <option value="">Choose...</option>
                 <option>Urgent + Important</option>
@@ -28,14 +33,15 @@
 
         <div>
             <label asp-for="Category">Category:</label>
-            <select asp-for="CategoryId">
-                <option value="">Select a Catetory</option>
-                @foreach (Category m in ViewBag.Categories)
-                {
-                    <option value="@m.CategoryId">@m.CategoryName</option>
-                }
+            <select asp-for="CategoryID">
+                <option value="">Choose...</option>
+                <option>Home</option>
+                <option>School</option>
+                <option>Work</option>
+                <option>Church</option>
             </select>
         </div>
+
 
         <div>
             <label asp-for="Completed">Completed?</label>
@@ -46,6 +52,6 @@
         </div>
 
         <button type="Add" class="btn-primary">Add</button>
-        <button type="Add" class="btn-primary">Eddit</button>
+        <button type="Add" class="btn-primary">Edit</button>
     </form>
 </div>
