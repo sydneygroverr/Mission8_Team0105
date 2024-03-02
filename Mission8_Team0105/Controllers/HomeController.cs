@@ -152,18 +152,18 @@ namespace Mission8_Team0105.Controllers
 
         // this will be the add task controller once we have a add task view 
         [HttpGet]
-        public IActionResult AddMovie()
+        public IActionResult AddEdit()
         {
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View("AddMovie");
+            return View("AddEdit");
         }
 
         // again this will go with the add task view 
         [HttpPost]
-        public IActionResult AddMovie(Models.Task response)
+        public IActionResult AddEdit(Models.Task response)
         {
 
             // add the record to the database
@@ -176,17 +176,17 @@ namespace Mission8_Team0105.Controllers
         }
 
 
-        // view to look at all the tasks
-        public IActionResult MovieData()
-        {
+        //// view to look at all the tasks
+        //public IActionResult MovieData()
+        //{
 
-            // need to change the variable we are calling on here
-            var collections = _context.Tasks.Include("Category")
-                .OrderBy(x => x.Title).ToList();
+        //    // need to change the variable we are calling on here
+        //    var collections = _context.Tasks.Include("Category")
+        //        .OrderBy(x => x.Title).ToList();
 
-            // need to change the return view here
-            return View(collections);
-        }
+        //    // need to change the return view here
+        //    return View(collections);
+        //}
 
         [HttpGet]
         public IActionResult Edit(int id)
@@ -199,7 +199,7 @@ namespace Mission8_Team0105.Controllers
             .ToList();
 
             // need to change the return view 
-            return View("AddMovie", recordToEdit);
+            return View("AddEdit", recordToEdit);
         }
 
         [HttpPost]
