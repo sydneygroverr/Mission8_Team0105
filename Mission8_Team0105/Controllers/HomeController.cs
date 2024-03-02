@@ -26,7 +26,7 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult AddEdit()
         {
-            
+
             return View("AddEdit");
         }
 
