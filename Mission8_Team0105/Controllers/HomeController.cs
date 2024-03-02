@@ -3,6 +3,7 @@ using Mission8_Team0105.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 
 namespace Mission8_Team0105.Controllers
@@ -27,7 +28,7 @@ namespace Mission8_Team0105.Controllers
         public IActionResult AddEdit()
         {
 
-            return View("AddEdit");
+            return View(new Models.Task());
         }
 
         [HttpPost]
@@ -44,34 +45,27 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Quadrants()
         {
-            var collections = _repo.Tasks.ToList();
+            var tasks = _repo.GetIncompleteTasksWithCategory();
 
-            return View("Quadrants", collections);
+            return View(tasks);
         }
-
-    
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var recordToEdit = _repo.Tasks
-                .Single(x => x.TaskId == id);
-
-            ViewBag.Categories = _repo.Categories
-            .OrderBy(x => x.CategoryName)
-            .ToList();
+            var recordToEdit = _repo.GetTaskByID(id);
+            if (recordToEdit == null)
+            {
+                return NotFound();
+            }
 
             return View("AddEdit", recordToEdit);
         }
 
-
-
-
         [HttpPost]
         public IActionResult Edit(Models.Task updatedInfo)
         {
-            _repo.Update(updatedInfo);
-            _repo.SaveChanges();
+            _repo.Edit(updatedInfo);
 
             return RedirectToAction("Quadrants");
         }
@@ -79,19 +73,15 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _repo.Tasks
-                .Single(x => x.TaskId == id);
-
-
-            // change return view
+            var recordToDelete = _repo.GetTaskByID(id);
+            
             return View(recordToDelete);
         }
 
         [HttpPost]
         public IActionResult Delete(Models.Task task)
         {
-            _repo.Tasks.Remove(task);
-            _repo.SaveChanges();
+            _repo.Delete(task);
 
             return RedirectToAction("ConfirmDelete");
         }

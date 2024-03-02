@@ -1,17 +1,16 @@
-﻿namespace Mission8_Team0105.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Mission8_Team0105.Models
 {
     public interface ITaskRepository
     {
         List<Task> Tasks { get; }
-        object Categories { get; }
 
         public void AddEdit(Task response);
-        public void Quadrants();
-        public void Edit(int id);
-        public void Delete(int id);
-
-        void SaveChanges();
-        void Update(Task updatedInfo);
+        public void Edit(Task task);
+        public void Delete(Task task);
+        public Task GetTaskByID(int taskId);
+        public List<Task> GetIncompleteTasksWithCategory();
     }
 }
 

@@ -1,16 +1,15 @@
 ﻿@model List<Mission8_Team0105.Models.Task>
 
-
 <style>
-    .container {
-        background-color: #ffe6cc; 
-        border: 1px solid #f39c12; 
-        padding: 15px; 
-        margin-top: 20px; 
+    .Quadcontainer {
+        background-color: #ffe6cc;
+        border: 1px solid #f39c12;
+        padding: 15px;
+        margin-top: 20px;
     }
 
     .quadrant {
-        border: 1px solid #ccc;
+        border: 1px solid #000000;
         padding: 10px;
         margin-bottom: 10px;
     }
@@ -21,16 +20,19 @@
         margin-bottom: 10px;
     }
 
-    
     .row .quadrant {
-        border: 1px solid #ddd; 
+        border: 1px solid #ddd;
+    }
+
+    .footer {
+        margin-top: 20px; /* Adjust margin as needed */
     }
 </style>
 
-<div class="container">
+<div class="Quadcontainer">
     <div class="row">
-        <div class="col-md-3">
-            <div class="quadrant-label">Quadrant 1</div>
+        <div class="col-md-6">
+            <div class="quadrant-label">Urgent+Important</div>
             @foreach (var task in Model.Where(t => t.Quadrant == 1))
             {
                 <div class="quadrant">
@@ -38,11 +40,12 @@
                 </div>
             }
         </div>
-        <div class="col-md-3">
-            <div class="quadrant-label">Quadrant 2</div>
+        <div class="col-md-6">
+            <div class="quadrant-label">Not Urgent+Important</div>
             @foreach (var task in Model.Where(t => t.Quadrant == 2))
             {
-                <div class="quadrant">
+                <div class="quadrant float-right">
+                    <!-- Added float-right class -->
                     @task.TaskName
                 </div>
             }
@@ -50,8 +53,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <div class="quadrant-label">Quadrant 3</div>
+        <div class="col-md-6">
+            <div class="quadrant-label">Urgent+Not Important</div>
             @foreach (var task in Model.Where(t => t.Quadrant == 3))
             {
                 <div class="quadrant">
@@ -59,15 +62,15 @@
                 </div>
             }
         </div>
-        <div class="col-md-3">
-            <div class="quadrant-label">Quadrant 4</div>
+        <div class="col-md-6">
+            <div class="quadrant-label">Not Urgent+Not Important</div>
             @foreach (var task in Model.Where(t => t.Quadrant == 4))
             {
-                <div class="quadrant">
+                <div class="quadrant float-right">
+                    <!-- Added float-right class -->
                     @task.TaskName
                 </div>
             }
         </div>
     </div>
 </div>
-

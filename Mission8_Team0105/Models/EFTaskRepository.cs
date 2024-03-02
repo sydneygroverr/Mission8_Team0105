@@ -15,19 +15,43 @@ namespace Mission8_Team0105.Models
 
         public void AddEdit(Task response)
         {
-            ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.CategoryName)
-                .ToList();
-
             _context.Add(response);
             _context.SaveChanges();
         }
 
-        public void Quadrants()
+        public void Delete(Task response)
         {
+            _context.Remove(response);
+            _context.SaveChanges();
+        }
 
-            var collections = _context.Tasks.Include("Category").ToList();
+        public void Edit(Task response)
+        {
+            _context.Update(response);
+            _context.SaveChanges();
+        }
 
+        public Task GetTaskById(int taskId)
+        {
+            var task = _context.Tasks
+                .FirstOrDefault(t => t.TaskId == taskId);
+
+            if (task == null)
+            {
+                throw new InvalidOperationException($"No Task found with ID {taskId}.");
+            }
+
+            return task;
+        }
+
+        public List<Task> GetIncompleteTasksWithCategory()
+        {
+            return _context.Tasks.Where(t => t.Completed == false).ToList();
+        }
+
+        public Task GetTaskByID(int taskId)
+        {
+            throw new NotImplementedException();
         }
 
         //public Task GetTaskById(int id)
