@@ -34,27 +34,22 @@ namespace Mission8_Team0105.Controllers
         public IActionResult AddEdit(Models.Task response)
         {
 
-            // add the record to the database
             _repo.AddEdit(response);
-             //commit changes to the database
-
 
             // need to change the return view
-            return View("TaskAddConfirm", response);
+            return View("ConfirmAddTask", response);
         }
 
 
-        // view to look at all the tasks
+        [HttpGet]
         public IActionResult Quadrants()
         {
+            var collections = _repo.Tasks.ToList();
 
-            // need to change the variable we are calling on here
-            var collections = _repo.Tasks.Include("Category").ToList();
-                //.OrderBy(x => x.CategoryName).ToList();
-
-            // need to change the return view here
-            return View(collections);
+            return View("Quadrants", collections);
         }
+
+    
 
         [HttpGet]
         public IActionResult Edit(int id)
@@ -68,6 +63,9 @@ namespace Mission8_Team0105.Controllers
 
             return View("AddEdit", recordToEdit);
         }
+
+
+
 
         [HttpPost]
         public IActionResult Edit(Models.Task updatedInfo)

@@ -1,4 +1,6 @@
-﻿namespace Mission8_Team0105.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Mission8_Team0105.Models
 {
     public class EFTaskRepository : ITaskRepository
     {
@@ -21,7 +23,23 @@
             _context.SaveChanges();
         }
 
-        public void 
+        public void Quadrants()
+        {
+
+            var collections = _context.Tasks.Include("Category").ToList();
+
+        }
+
+        //public Task GetTaskById(int id)
+        //{
+        //    return _context.Tasks.SingleOrDefault(x => x.TaskId == id);
+        //}
+
+        //public List<Category> GetAllCategoriesOrderedByName()
+        //{
+        //    return _context.Categories.OrderBy(x => x.CategoryName).ToList();
+        //}
+
     }
 }
 
