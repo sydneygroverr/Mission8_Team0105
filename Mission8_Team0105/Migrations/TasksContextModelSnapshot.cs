@@ -2,20 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mission8_Team0105.Models;
+using Mission08_0105.Models;
 
 #nullable disable
 
 namespace Mission8_Team0105.Migrations
 {
-    [DbContext(typeof(task_context))]
-    [Migration("20240302045233_ReposFromContext")]
-    partial class ReposFromContext
+    [DbContext(typeof(TasksContext))]
+    partial class TasksContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -32,28 +29,6 @@ namespace Mission8_Team0105.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryID = 1,
-                            CategoryName = "Home"
-                        },
-                        new
-                        {
-                            CategoryID = 2,
-                            CategoryName = "School"
-                        },
-                        new
-                        {
-                            CategoryID = 3,
-                            CategoryName = "Work"
-                        },
-                        new
-                        {
-                            CategoryID = 4,
-                            CategoryName = "Church"
-                        });
                 });
 
             modelBuilder.Entity("Mission8_Team0105.Models.Task", b =>
@@ -69,7 +44,8 @@ namespace Mission8_Team0105.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DueDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Due_Date");
 
                     b.Property<int>("Quadrant")
                         .HasColumnType("INTEGER");

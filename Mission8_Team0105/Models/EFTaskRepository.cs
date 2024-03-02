@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Mission08_0105.Models;
 
 namespace Mission8_Team0105.Models
 {
     public class EFTaskRepository : ITaskRepository
     {
-        private task_context _context;
+        private TasksContext _context;
 
-        public EFTaskRepository(task_context temp)
+        public EFTaskRepository(TasksContext temp)
         {
             _context = temp;
         }
