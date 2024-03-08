@@ -3,12 +3,10 @@
 
 <div>
     <h1>Add/Edit</h1>
-    <form>
+    <form method="post">
 
-        <div> 
-            <label asp-for="TaskId">Task ID:</label>
-            <input asp-for="TaskId" />
-        </div>
+        <input type="hidden" asp-for="TaskId" />
+
 
         <div> 
             <label asp-for="TaskName">Task:</label>
@@ -34,11 +32,11 @@
         <div>
             <label asp-for="Category">Category:</label>
             <select asp-for="CategoryID">
-                <option value="">Choose...</option>
-                <option>Home</option>
-                <option>School</option>
-                <option>Work</option>
-                <option>Church</option>
+                <option value="">Select a Catetory</option>
+                @foreach (Category m in ViewBag.Categories)
+                {
+                    <option value="@m.CategoryID">@m.CategoryName</option>
+                }
             </select>
         </div>
 
@@ -51,7 +49,7 @@
             </select>
         </div>
 
-        <button type="Add" class="btn-primary">Add</button>
-        <button type="Add" class="btn-primary">Edit</button>
+        <button type="submit" class="btn-primary">Add</button>
+
     </form>
 </div>

@@ -23,22 +23,35 @@ namespace Mission8_Team0105.Controllers
             return View("Index");
         }
 
-
         [HttpGet]
         public IActionResult AddEdit()
         {
+            ViewBag.Category = _repo.Category
+                .OrderBy(x => x.CategoryName)
+                .ToList();
 
-            return View(new Models.Task());
+            return View("Add", new Models.Task());
         }
 
         [HttpPost]
-        public IActionResult AddEdit(Models.Task response)
+        public IActionResult Add(Models.Task response)
         {
+            if (ModelState.IsValid)
+            {
+                _repo.Add(response);
+                _repo.SaveChanges();
 
-            _repo.AddEdit(response);
+                return View("ConfirmAddTask", response);
+            }
+            else
+            {
+                ViewBag.Category = _repo.Category
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
 
-            // need to change the return view
-            return View("ConfirmAddTask", response);
+                return View(response);
+
+            }
         }
 
 
@@ -53,19 +66,21 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var recordToEdit = _repo.GetTaskByID(id);
-            if (recordToEdit == null)
-            {
-                return NotFound();
-            }
+            var recordToEdit = _repo.Tasks
+                .Single(x => x.TaskId == id);
 
-            return View("AddEdit", recordToEdit);
+            ViewBag.Category = _repo.Category
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("Add", recordToEdit);
         }
 
         [HttpPost]
         public IActionResult Edit(Models.Task updatedInfo)
         {
             _repo.Edit(updatedInfo);
+            _repo.SaveChanges();
 
             return RedirectToAction("Quadrants");
         }
@@ -81,7 +96,8 @@ namespace Mission8_Team0105.Controllers
         [HttpPost]
         public IActionResult Delete(Models.Task task)
         {
-            _repo.Delete(task);
+            _repo.Tasks.Remove(task);
+            _repo.SaveChanges();
 
             return RedirectToAction("ConfirmDelete");
         }

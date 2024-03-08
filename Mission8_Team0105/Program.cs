@@ -7,9 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<task_context>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("TaskConnection")));
+{
+    options.UseSqlite(builder.Configuration["ConnectionString:TaskConnection"]);
 
-builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
+});
+
+//builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
 
 var app = builder.Build();
 

@@ -5,12 +5,14 @@ namespace Mission8_Team0105.Models
     public interface ITaskRepository
     {
         List<Task> Tasks { get; }
+        dynamic Category { get; set; }
 
-        public void AddEdit(Task response);
+        public void Add(Task response);
         public void Edit(Task task);
         public void Delete(Task task);
         public Task GetTaskByID(int taskId);
         public List<Task> GetIncompleteTasksWithCategory();
+        void SaveChanges();
     }
 }
 

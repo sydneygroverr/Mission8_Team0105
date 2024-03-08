@@ -13,7 +13,9 @@ namespace Mission8_Team0105.Models
 
         public List<Task> Tasks => _context.Tasks.ToList();
 
-        public void AddEdit(Task response)
+        public dynamic Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public void Add(Task response)
         {
             _context.Add(response);
             _context.SaveChanges();
@@ -50,6 +52,11 @@ namespace Mission8_Team0105.Models
         }
 
         public Task GetTaskByID(int taskId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }
