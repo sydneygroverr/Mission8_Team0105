@@ -11,8 +11,8 @@ using Mission8_Team0105.Models;
 namespace Mission8_Team0105.Migrations
 {
     [DbContext(typeof(task_context))]
-    [Migration("20240302045233_ReposFromContext")]
-    partial class ReposFromContext
+    [Migration("20240308233741_helpPlease")]
+    partial class helpPlease
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

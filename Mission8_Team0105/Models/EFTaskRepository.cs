@@ -13,25 +13,30 @@ namespace Mission8_Team0105.Models
 
         public List<Task> Tasks => _context.Tasks.ToList();
 
-        public dynamic Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Category> Categories => _context.Categories.ToList();
+
+        //public dynamic Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public List<Category> GetCategories() => _context.Categories.ToList();
 
         public void Add(Task response)
         {
-            _context.Add(response);
+            _context.Tasks.Add(response);
             _context.SaveChanges();
         }
 
         public void Delete(Task response)
         {
-            _context.Remove(response);
+            _context.Tasks.Remove(response);
             _context.SaveChanges();
         }
 
         public void Edit(Task response)
         {
-            _context.Update(response);
+            _context.Tasks.Update(response);
             _context.SaveChanges();
         }
+
 
         public Task GetTaskById(int taskId)
         {
@@ -51,15 +56,6 @@ namespace Mission8_Team0105.Models
             return _context.Tasks.Where(t => t.Completed == false).ToList();
         }
 
-        public Task GetTaskByID(int taskId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
 
         //public Task GetTaskById(int id)
         //{

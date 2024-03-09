@@ -5,7 +5,7 @@
 namespace Mission8_Team0105.Migrations
 {
     /// <inheritdoc />
-    public partial class ReposFromContext : Migration
+    public partial class working2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

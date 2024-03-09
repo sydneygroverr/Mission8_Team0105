@@ -74,3 +74,42 @@
         </div>
     </div>
 </div>
+
+<table class="table table-bordered">
+
+    <thead class="fw-bold">
+        <tr>
+            <td>Task Name</td>
+            <td>Due Date</td>
+            <td>Quadrant</td>
+            <td>Completed</td>
+            <td>Category</td>
+        </tr>
+
+    </thead>
+
+    @{
+        ViewBag.Title = "Task List";
+        var categories = ViewBag.Categories as List<Mission8_Team0105.Models.Category>;
+    }
+
+    @foreach (var x in Model)
+    {
+        <tbody>
+            <tr>
+
+                <td>@x.TaskName</td>
+                <td>@x.DueDate</td>
+                <td>@x.Completed</td>
+                <td>@x.Completed</td>
+                <td>@categories.FirstOrDefault(c => c.CategoryID == x.CategoryID)?.CategoryName</td>
+
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.TaskId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a></td>
+            </tr>
+
+
+        </tbody>
+    }
+
+</table>

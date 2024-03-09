@@ -24,9 +24,9 @@ namespace Mission8_Team0105.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddEdit()
+        public IActionResult Add()
         {
-            ViewBag.Category = _repo.Category
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
@@ -39,13 +39,12 @@ namespace Mission8_Team0105.Controllers
             if (ModelState.IsValid)
             {
                 _repo.Add(response);
-                _repo.SaveChanges();
 
-                return View("ConfirmAddTask", response);
+                return View("ConfirmAddTask");
             }
             else
             {
-                ViewBag.Category = _repo.Category
+                ViewBag.Categories = _repo.Categories
                     .OrderBy(x => x.CategoryName)
                     .ToList();
 
@@ -60,6 +59,10 @@ namespace Mission8_Team0105.Controllers
         {
             var tasks = _repo.GetIncompleteTasksWithCategory();
 
+            ViewBag.Categories = _repo.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View(tasks);
         }
 
@@ -69,7 +72,7 @@ namespace Mission8_Team0105.Controllers
             var recordToEdit = _repo.Tasks
                 .Single(x => x.TaskId == id);
 
-            ViewBag.Category = _repo.Category
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
@@ -80,7 +83,6 @@ namespace Mission8_Team0105.Controllers
         public IActionResult Edit(Models.Task updatedInfo)
         {
             _repo.Edit(updatedInfo);
-            _repo.SaveChanges();
 
             return RedirectToAction("Quadrants");
         }
@@ -88,7 +90,7 @@ namespace Mission8_Team0105.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _repo.GetTaskByID(id);
+            var recordToDelete = _repo.GetTaskById(id);
             
             return View(recordToDelete);
         }
@@ -96,10 +98,9 @@ namespace Mission8_Team0105.Controllers
         [HttpPost]
         public IActionResult Delete(Models.Task task)
         {
-            _repo.Tasks.Remove(task);
-            _repo.SaveChanges();
+            _repo.Delete(task);
 
-            return RedirectToAction("ConfirmDelete");
+            return RedirectToAction("Quadrants");
         }
     }
 }
